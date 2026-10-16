@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { BikeVector } from './bike-vector';
 import styles from '../../home.module.css';
 
 const SCENES = [
@@ -109,7 +108,7 @@ export function HeroSection() {
             </div>
           </div>
           <div className={styles.heroBikeStage} ref={bikeRef}>
-            <BikeVector tone="light" className={styles.heroBike} />
+            <img src="/alsvid-hero-bike-reference.svg" className={styles.heroBike} alt="" aria-hidden="true" />
           </div>
         </div>
 
