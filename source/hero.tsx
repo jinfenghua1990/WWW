@@ -5,10 +5,10 @@ import { BikeVector } from './bike-vector';
 import styles from '../../home.module.css';
 
 const SCENES = [
-  { tag: 'FOLDING / FC PLATFORM', title: '接下来去哪里？', sub: 'MORE THAN A RIDE' },
-  { tag: 'CITY / CT PLATFORM', title: '城市，由我掌控', sub: 'URBAN COMMUTING' },
-  { tag: 'FAT TIRE / FT PLATFORM', title: '越野，无边界', sub: 'ALL TERRAIN' },
-  { tag: 'TOURING / GT PLATFORM', title: '远方，触手可及', sub: 'GO FURTHER' },
+  { tag: 'FOLDING', title: '接下来去哪里？', sub: 'MORE THAN A RIDE' },
+  { tag: 'CITY', title: '城市，由我掌控', sub: 'URBAN COMMUTING' },
+  { tag: 'FAT TIRE', title: '越野，无边界', sub: 'ALL TERRAIN' },
+  { tag: 'TOURING', title: '远方，触手可及', sub: 'GO FURTHER' },
 ] as const;
 
 const NAV_LINKS = [
@@ -21,16 +21,13 @@ const NAV_LINKS = [
 ] as const;
 
 const CYCLE_MS = 6000;
-const FAST_IDLE_MS = 170;
 
 export function HeroSection() {
   const [cur, setCur] = useState(0);
   const [epoch, setEpoch] = useState(0);
   const [scrolled, setScrolled] = useState(false);
-  const heroRef = useRef<HTMLElement | null>(null);
   const sceneRefs = useRef<Array<HTMLDivElement | null>>([]);
   const bikeRef = useRef<HTMLDivElement | null>(null);
-  const fastTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -47,40 +44,22 @@ export function HeroSection() {
     return () => window.clearInterval(id);
   }, [epoch]);
 
-  useEffect(() => {
-    return () => {
-      if (fastTimerRef.current) window.clearTimeout(fastTimerRef.current);
-    };
-  }, []);
-
   const select = (index: number) => {
     setCur(index);
     setEpoch((e) => e + 1);
   };
 
-  const setFastRide = () => {
+  const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    heroRef.current?.classList.add(styles.isFast);
-    if (fastTimerRef.current) window.clearTimeout(fastTimerRef.current);
-    fastTimerRef.current = window.setTimeout(() => {
-      heroRef.current?.classList.remove(styles.isFast);
-    }, FAST_IDLE_MS);
-  };
-
-  const handlePointerMove = (event: React.PointerEvent<HTMLElement>) => {
-    setFastRide();
-
     const x = event.clientX / window.innerWidth - 0.5;
     const y = event.clientY / window.innerHeight - 0.5;
     sceneRefs.current.forEach((node, index) => {
-      if (node) node.style.translate = \`\${x * (8 + index * 3)}px \${y * (5 + index * 2)}px\`;
+      if (node) node.style.translate = `${x * (10 + index * 4)}px ${y * (6 + index * 3)}px`;
     });
-    if (bikeRef.current) bikeRef.current.style.translate = \`\${x * -12}px \${y * -6}px\`;
+    if (bikeRef.current) bikeRef.current.style.translate = `${x * -14}px ${y * -8}px`;
   };
 
-  const handlePointerLeave = () => {
-    heroRef.current?.classList.remove(styles.isFast);
-    if (fastTimerRef.current) window.clearTimeout(fastTimerRef.current);
+  const handleMouseLeave = () => {
     sceneRefs.current.forEach((node) => {
       if (node) node.style.translate = '';
     });
@@ -91,7 +70,7 @@ export function HeroSection() {
 
   return (
     <>
-      <header className={\`\${styles.nav} \${scrolled ? styles.navScrolled : ''}\`} data-home-nav>
+      <header className={`${styles.nav} ${scrolled ? styles.navScrolled : ''}`} data-home-nav>
         <div className={styles.navInner}>
           <a className={styles.logo} href="#top">ALSVID</a>
           <nav className={styles.navLinks} aria-label="官网主导航">
@@ -105,19 +84,12 @@ export function HeroSection() {
         </div>
       </header>
 
-      <section
-        ref={heroRef}
-        id="top"
-        className={styles.hero}
-        aria-label="首页主视觉"
-        onPointerMove={handlePointerMove}
-        onPointerLeave={handlePointerLeave}
-      >
+      <section id="top" className={styles.hero} aria-label="首页主视觉" onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave}>
         {SCENES.map((item, index) => (
           <div
             key={item.tag}
             ref={(node) => { sceneRefs.current[index] = node; }}
-            className={\`\${styles.heroScene} \${styles[\`scene\${index}\`]} \${cur === index ? styles.on : ''}\`}
+            className={`${styles.heroScene} ${styles[`scene${index}`]} ${cur === index ? styles.on : ''}`}
             aria-hidden={cur !== index}
           />
         ))}
@@ -136,10 +108,8 @@ export function HeroSection() {
               </a>
             </div>
           </div>
-
           <div className={styles.heroBikeStage} ref={bikeRef}>
             <BikeVector tone="light" className={styles.heroBike} />
-            <span className={styles.speedLines} aria-hidden="true"><i /><i /><i /></span>
           </div>
         </div>
 
@@ -154,14 +124,12 @@ export function HeroSection() {
               onClick={() => select(index)}
             >
               <span className={styles.tabBar}>
-                <i key={\`\${index}-\${cur === index}\`} />
+                <i key={`${index}-${cur === index}`} />
               </span>
               {item.tag}
             </button>
           ))}
         </div>
-
-        <span className={styles.motionHint} aria-hidden="true">MOVE TO RIDE FASTER</span>
 
         <a className={styles.scrollDown} href="#platforms" aria-label="向下滚动">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
