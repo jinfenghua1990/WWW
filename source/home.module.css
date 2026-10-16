@@ -367,3 +367,98 @@
   .heroBike { opacity: 1; transform: none; }
   :global(.home-reveal) { opacity: 1 !important; transform: none !important; }
 }
+
+
+/* ============================================================
+   ALSVID Hero Motion V2 — 真实折叠电助力车线稿 + 鼠标骑行速度
+   ============================================================ */
+.hero { background: #3f4930; }
+.scene0 {
+  background:
+    radial-gradient(circle at 72% 70%, rgba(175,185,112,.22), transparent 34%),
+    linear-gradient(145deg,#293222 0%,#3f4930 48%,#697249 100%);
+}
+.scene1 {
+  background:
+    radial-gradient(circle at 72% 70%, rgba(130,165,205,.18), transparent 34%),
+    linear-gradient(145deg,#1b2530 0%,#344252 50%,#64748a 100%);
+}
+.scene2 {
+  background:
+    radial-gradient(circle at 72% 70%, rgba(118,171,145,.2), transparent 34%),
+    linear-gradient(145deg,#182522 0%,#34483f 50%,#61796c 100%);
+}
+.scene3 {
+  background:
+    radial-gradient(circle at 72% 70%, rgba(205,184,112,.2), transparent 34%),
+    linear-gradient(145deg,#25291e 0%,#4b5233 50%,#77784c 100%);
+}
+.heroGrid { grid-template-columns: 40% 60%; }
+.heroBikeStage {
+  min-height: 430px;
+  position: relative;
+  animation: homeRideFloat 4s ease-in-out infinite;
+}
+.heroBike {
+  max-width: 720px;
+  filter: drop-shadow(0 28px 34px rgba(0,0,0,.28));
+}
+.hero:hover .heroBike [data-wheel],
+.hero .heroBike [data-wheel],
+.hero .heroBike [data-crank] {
+  animation-duration: 5.6s !important;
+}
+.hero.isFast .heroBike [data-wheel],
+.hero.isFast .heroBike [data-crank] {
+  animation-duration: .62s !important;
+}
+.hero.isFast .heroBikeStage { animation-duration: .58s; }
+@keyframes homeRideFloat {
+  0%,100% { transform: translate3d(0,0,0); }
+  50% { transform: translate3d(0,-4px,0); }
+}
+.speedLines {
+  position: absolute;
+  right: 5%;
+  top: 58%;
+  width: 24%;
+  height: 90px;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity .2s ease, transform .2s ease;
+  pointer-events: none;
+}
+.speedLines i {
+  display: block;
+  height: 1px;
+  margin: 17px 0 0 auto;
+  background: linear-gradient(90deg,transparent,rgba(255,255,255,.55));
+}
+.speedLines i:nth-child(1) { width: 100%; }
+.speedLines i:nth-child(2) { width: 72%; }
+.speedLines i:nth-child(3) { width: 46%; }
+.hero.isFast .speedLines { opacity: .55; transform: none; }
+.motionHint {
+  position: absolute;
+  right: 42px;
+  top: 50%;
+  transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  letter-spacing: .22em;
+  font-size: 9px;
+  color: rgba(255,255,255,.34);
+  text-transform: uppercase;
+  z-index: 6;
+}
+@media (max-width: 900px) {
+  .heroGrid { grid-template-columns: 1fr; }
+  .heroBikeStage { min-height: 300px; order: -1; }
+  .heroBike { max-width: 640px; }
+  .motionHint, .heroTabs { display: none; }
+}
+@media (max-width: 560px) { .heroBikeStage { min-height: 240px; } }
+@media (prefers-reduced-motion: reduce) {
+  .heroBikeStage, .speedLines { animation: none !important; }
+  .hero.isFast .heroBike [data-wheel],
+  .hero.isFast .heroBike [data-crank] { animation: none !important; }
+}
