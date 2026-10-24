@@ -3,461 +3,204 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALSVIN 运营后台 · 官网商品发布与审核</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%232E6FF2' d='M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2z'/></svg>">
+<title>ALSVID · 产品中心</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><rect width='24' height='24' rx='6' fill='%232E6BFF'/><path d='M6 16V8h4.2c2 0 3.3 1.2 3.3 3s-1.3 3-3.3 3H8.4v2H6z' fill='white'/></svg>">
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <div class="app">
 
-  <!-- ======================= 侧边导航栏 ======================= -->
-  <aside class="sidebar">
-    <!-- 品牌区 -->
-    <div class="brand">
-      <div class="brand-logo">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M13 2 4.5 13.5H11L9.5 22 19 9.5h-6.5L13 2z" fill="#2E6FF2"/></svg>
-      </div>
-      <div class="brand-text">
-        <span class="brand-name">ALSVIN</span>
-        <span class="brand-sub">OPERATIONS</span>
-      </div>
-    </div>
+  <!-- ============ 二级导航 ============ -->
+  <aside class="subnav">
+    <div class="nav-group-label">产品组合</div>
+    <nav class="nav-list">
+      <a class="nav-item" href="#" data-nav="FC Platform">FC Platform</a>
+      <a class="nav-item" href="#" data-nav="CT Platform">CT Platform</a>
+      <a class="nav-item" href="#" data-nav="FT Platform">FT Platform</a>
+      <a class="nav-item" href="#" data-nav="GT Platform">GT Platform</a>
+    </nav>
 
     <div class="nav-gap"></div>
-
-    <div class="nav-group-label">电商管理</div>
+    <div class="nav-group-label">平台管理</div>
     <nav class="nav-list">
-      <a class="nav-item active" href="#">
-        <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5 14 5v6L8 14.5 2 11V5l6-3.5z"/><path d="M2 5l6 3.5L14 5M8 8.5v6"/></svg>
-        <span>官网商品发布</span>
-      </a>
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M6.5 9.5 9.5 6.5M4.8 8 3.2 9.6a2.6 2.6 0 0 0 3.7 3.7L8.4 11.8M11.2 8l1.6-1.6a2.6 2.6 0 0 0-3.7-3.7L7.6 4.2"/></svg>
-        <span>首页商品绑定</span>
-      </a>
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 5.5 8 2l6.5 3.5L8 8.8 1.5 5.5zM1.5 5.5v5L8 14v-5.2M14.5 5.5v5L8 14"/></svg>
-        <span>库存与交期</span>
-      </a>
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="8" cy="3.6" rx="5.5" ry="2.1"/><path d="M2.5 3.6v4.2c0 1.16 2.46 2.1 5.5 2.1s5.5-.94 5.5-2.1V3.6M2.5 7.8V12c0 1.16 2.46 2.1 5.5 2.1s5.5-.94 5.5-2.1V7.8"/></svg>
-        <span>电商库存</span>
-      </a>
-      <a class="nav-item" href="#">
-        <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 1.5h5v5M14.5 1.5 8 8M6.5 3.5h-3a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-3"/></svg>
-        <span>商城价与B2C订单</span>
-      </a>
+      <a class="nav-item" href="#" data-nav="产品平台">产品平台</a>
+      <a class="nav-item" href="#" data-nav="技术平台">技术平台</a>
     </nav>
 
-    <div class="nav-gap sm"></div>
-    <div class="nav-group-label">营销功能</div>
+    <div class="nav-gap"></div>
+    <div class="nav-group-label">型号管理</div>
     <nav class="nav-list">
-      <a class="nav-item disabled" href="#">
-        <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M1.5 8.5 14.5 2l-4 12-3.2-4.6L1.5 8.5zM7.3 9.4 14.5 2"/></svg>
-        <span>营销活动</span>
-        <em class="badge-soon">待接入</em>
-      </a>
-      <a class="nav-item disabled" href="#">
-        <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="1.5" y="3.5" width="13" height="9" rx="1.5"/><path d="M1.5 6.5h13"/></svg>
-        <span>支付配置</span>
-        <em class="badge-soon">待接入</em>
-      </a>
+      <a class="nav-item active" href="#" data-nav="型号">型号</a>
+      <a class="nav-item" href="#" data-nav="配置">配置</a>
+      <a class="nav-item" href="#" data-nav="SKU">SKU</a>
     </nav>
 
-    <div class="nav-gap sm"></div>
-    <div class="nav-group-label">运营助手</div>
+    <div class="nav-gap"></div>
+    <div class="nav-group-label">工程管理</div>
+    <nav class="nav-list">
+      <a class="nav-item" href="#" data-nav="BOM">BOM</a>
+      <a class="nav-item" href="#" data-nav="零件库">零件库</a>
+      <a class="nav-item" href="#" data-nav="工程文件">工程文件</a>
+      <a class="nav-item" href="#" data-nav="版本控制">版本控制</a>
+    </nav>
 
-    <!-- 库存预警卡片 -->
-    <div class="side-card">
-      <div class="side-card-title warn">
-        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#F59E0B" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2 14.5 13.5H1.5L8 2z"/><path d="M8 6.5v3M8 11.6v.1"/></svg>
-        <span>库存预警</span>
-      </div>
-      <div class="side-card-body">
-        <span class="mono sku">CT1-EU-GRAY</span>
-        <p class="muted">慕尼黑仓可用库存仅 5 件，建议尽快补货</p>
-      </div>
-      <div class="meter"><span style="width:17%"></span></div>
-    </div>
-
-    <!-- 发布排期卡片 -->
-    <div class="side-card">
-      <div class="side-card-title">
-        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#2E6FF2" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="2.3" y="3.3" width="11.3" height="10.3" rx="1.6"/><path d="M2.3 6.6h11.3M5.3 1.8v2.2M10.7 1.8v2.2"/></svg>
-        <span>发布排期</span>
-      </div>
-      <ul class="schedule">
-        <li>
-          <i class="dot ok"></i>
-          <div><b>FC1-DE-BLACK 德国站发布</b><time class="mono">2026-10-25 09:00</time></div>
-        </li>
-        <li>
-          <i class="dot ok"></i>
-          <div><b>官网秋季主图更新</b><time class="mono">2026-10-28 18:00</time></div>
-        </li>
-        <li>
-          <i class="dot pending"></i>
-          <div><b>CT1-EU-GRAY 补货上架</b><time class="mono">时间待定</time></div>
-        </li>
-      </ul>
-    </div>
-
-    <!-- 快捷操作卡片 -->
-    <div class="side-card">
-      <div class="side-card-title">
-        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="#2E6FF2" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M9 1.5 3.5 9H8l-1 5.5L12.5 7H8L9 1.5z"/></svg>
-        <span>快捷操作</span>
-      </div>
-      <div class="quick-list">
-        <button type="button" class="quick-item" data-action="new-product">
-          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg>
-          <span>新建商品发布</span>
-        </button>
-        <button type="button" class="quick-item" data-action="batch-price">
-          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M13.5 2.5 2.5 13.5M4.2 5.4a1.7 1.7 0 1 0 0-.01M11.8 10.6a1.7 1.7 0 1 0 0-.01"/></svg>
-          <span>批量价格更新</span>
-        </button>
-        <button type="button" class="quick-item" data-action="export-report">
-          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v8M4.8 7 8 10.2 11.2 7M2.5 13.5h11"/></svg>
-          <span>导出库存报表</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="sidebar-flex"></div>
-
-    <!-- 用户卡片 -->
-    <div class="user-card">
-      <div class="avatar">管</div>
-      <div class="user-info">
-        <b>管理员</b>
-        <span class="mono">admin@alsvin.com</span>
-      </div>
-    </div>
+    <div class="nav-gap"></div>
+    <div class="nav-group-label">生命周期</div>
+    <nav class="nav-list">
+      <a class="nav-item" href="#" data-nav="开发中">开发中</a>
+      <a class="nav-item" href="#" data-nav="量产">量产</a>
+      <a class="nav-item" href="#" data-nav="停产">停产</a>
+      <a class="nav-item" href="#" data-nav="归档">归档</a>
+    </nav>
   </aside>
 
-  <!-- ======================= 主工作区 ======================= -->
-  <div class="main">
+  <!-- ============ 工作区 ============ -->
+  <main class="workspace">
 
-    <!-- 顶部工具栏 -->
-    <header class="topbar">
-      <div class="breadcrumb">
-        <span class="muted">电商</span>
-        <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#52525B" stroke-width="1.4" stroke-linecap="round"><path d="m6 3.5 4 4.5-4 4.5"/></svg>
-        <span>官网商品发布</span>
+    <!-- 页面标题行 -->
+    <div class="page-head">
+      <div class="page-title">
+        <h1>产品中心</h1>
+        <p>平台 · 型号 · 配置与工程资料</p>
       </div>
-
-      <div class="global-search">
-        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>
-        <input id="globalSearch" type="text" placeholder="搜索功能、订单、SKU、客户…">
-        <kbd class="mono">K</kbd>
+      <div class="page-actions">
+        <button type="button" class="btn ghost" data-action="import">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 10.5V2.5M5 5.5 8 2.5l3 3M2.5 11.5v1.5a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-1.5"/></svg>
+          <span>导入</span>
+        </button>
+        <button type="button" class="btn primary" data-action="new-model">
+          <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M8 3.2v9.6M3.2 8h9.6"/></svg>
+          <span>新建型号</span>
+        </button>
       </div>
+    </div>
 
-      <div class="topbar-space"></div>
-
-      <button type="button" class="icon-btn" title="语言" data-action="lang">
-        <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6.5"/><path d="M1.5 8h13M8 1.5c-3.6 3.9-3.6 9.1 0 13M8 1.5c3.6 3.9 3.6 9.1 0 13"/></svg>
-      </button>
-      <button type="button" class="icon-btn has-dot" id="notifyBtn" title="通知">
-        <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12.5 6a4.5 4.5 0 0 0-9 0c0 3.2-1.5 4.5-1.5 4.5h12S12.5 9.2 12.5 6zM6.5 13a1.6 1.6 0 0 0 3 0"/></svg>
-        <i class="red-dot" id="notifyDot"></i>
-      </button>
-      <div class="top-user">
-        <div class="avatar sm">管</div>
-        <span>管理员</span>
+    <!-- 筛选行 -->
+    <div class="filter-row">
+      <div class="search-box">
+        <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="7" cy="7" r="4.4"/><path d="m10.4 10.4 2.6 2.6"/></svg>
+        <input id="searchInput" type="text" placeholder="搜索型号 / SKU / BOM / VIN">
       </div>
-    </header>
-
-    <!-- 内容区 -->
-    <main class="content">
-
-      <!-- 页面标题区 -->
-      <div class="page-head">
-        <div class="page-head-text">
-          <h1>官网商品发布与审核</h1>
-          <p>管理官网（FC1 / FC2）商品的发布状态，进行内容编辑、审核与上架，支持多语言、多渠道的商品信息管理。</p>
-        </div>
-        <div class="page-actions">
-          <button type="button" class="btn ghost" data-action="guide">
-            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2.5c-1.8-1-4.2-1-6 .2v10.8c1.8-1.2 4.2-1.2 6-.2 1.8-1 4.2-1 6 .2V2.7c-1.8-1.2-4.2-1.2-6-.2zM8 2.5v10.8"/></svg>
-            <span>查看发布指南</span>
-          </button>
-          <button type="button" class="btn primary" data-action="new-product">
-            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg>
-            <span>新建商品</span>
-          </button>
-        </div>
+      <div class="chips" id="chips">
+        <button type="button" class="chip active" data-filter="ALL">全部</button>
+        <button type="button" class="chip" data-filter="FC">FC</button>
+        <button type="button" class="chip" data-filter="CT">CT</button>
+        <button type="button" class="chip" data-filter="FT">FT</button>
+        <button type="button" class="chip" data-filter="GT">GT</button>
       </div>
+    </div>
 
-      <!-- 发布状态概览 -->
-      <div class="overview-row">
-        <h2 class="sec-title">发布状态概览</h2>
-        <div class="rejected-stat"><i class="dot danger"></i>已拒绝 0</div>
+    <!-- 系列卡片组 -->
+    <div class="series-grid" id="seriesGrid">
+      <article class="series-card" data-series="FC">
+        <h2>FC Platform</h2>
+        <p class="series-sub">Folding Carbon · 碳纤维折叠平台</p>
+        <dl>
+          <div><dt>型号：</dt><dd>FC1 · FC1 Pro</dd></div>
+          <div><dt>当前阶段：</dt><dd>2 个量产型号</dd></div>
+          <div><dt>BOM：</dt><dd>V1.2 / V2.0</dd></div>
+        </dl>
+      </article>
+      <article class="series-card" data-series="CT">
+        <h2>CT Platform</h2>
+        <p class="series-sub">City Touring · 城市通勤平台</p>
+        <dl>
+          <div><dt>型号：</dt><dd>CT1</dd></div>
+          <div><dt>当前阶段：</dt><dd>1 个量产型号</dd></div>
+          <div><dt>BOM：</dt><dd>V1.0</dd></div>
+        </dl>
+      </article>
+      <article class="series-card" data-series="FT">
+        <h2>FT Platform</h2>
+        <p class="series-sub">Fat Tire · 胖胎探索平台</p>
+        <dl>
+          <div><dt>型号：</dt><dd>FT1</dd></div>
+          <div><dt>当前阶段：</dt><dd>1 个量产型号</dd></div>
+          <div><dt>BOM：</dt><dd>V1.0</dd></div>
+        </dl>
+      </article>
+      <article class="series-card" data-series="GT">
+        <h2>GT Platform</h2>
+        <p class="series-sub">Grand Touring · 长途旅行平台</p>
+        <dl>
+          <div><dt>型号：</dt><dd>GT1</dd></div>
+          <div><dt>当前阶段：</dt><dd>研发阶段</dd></div>
+          <div><dt>BOM：</dt><dd>待建立</dd></div>
+        </dl>
+      </article>
+    </div>
+
+    <!-- 型号列表卡 -->
+    <section class="list-card">
+      <header class="list-head">
+        <h2>型号列表</h2>
+        <span class="list-count" id="listCount">共 5 个型号</span>
+      </header>
+      <div class="table-wrap">
+        <table class="model-table" id="modelTable">
+          <thead>
+            <tr>
+              <th>型号名称</th>
+              <th>平台</th>
+              <th>版本</th>
+              <th>状态</th>
+              <th>当前阶段</th>
+              <th>关联 BOM</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-series="FC" data-search="FC1 FC Standard 量产 生产中 BOM V1.2">
+              <td class="name">FC1</td>
+              <td>FC</td>
+              <td>Standard</td>
+              <td><span class="status ok"><i></i>量产</span></td>
+              <td>生产中</td>
+              <td>BOM V1.2</td>
+            </tr>
+            <tr data-series="FC" data-search="FC1 Pro FC PRO 量产 生产中 BOM V2.0">
+              <td class="name">FC1 Pro</td>
+              <td>FC</td>
+              <td>PRO</td>
+              <td><span class="status ok"><i></i>量产</span></td>
+              <td>生产中</td>
+              <td>BOM V2.0</td>
+            </tr>
+            <tr data-series="CT" data-search="CT1 CT Standard 量产 生产中 BOM V1.0">
+              <td class="name">CT1</td>
+              <td>CT</td>
+              <td>Standard</td>
+              <td><span class="status ok"><i></i>量产</span></td>
+              <td>生产中</td>
+              <td>BOM V1.0</td>
+            </tr>
+            <tr data-series="FT" data-search="FT1 FT Standard 量产 生产中 BOM V1.0">
+              <td class="name">FT1</td>
+              <td>FT</td>
+              <td>Standard</td>
+              <td><span class="status ok"><i></i>量产</span></td>
+              <td>生产中</td>
+              <td>BOM V1.0</td>
+            </tr>
+            <tr data-series="GT" data-search="GT1 GT Standard 规划 研发阶段 待建立">
+              <td class="name">GT1</td>
+              <td>GT</td>
+              <td>Standard</td>
+              <td><span class="status plan"><i></i>规划</span></td>
+              <td>研发阶段</td>
+              <td>待建立</td>
+            </tr>
+            <tr class="empty-row" id="emptyRow" hidden>
+              <td colspan="6">没有匹配的型号</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
+    </section>
 
-      <div class="kpi-row">
-        <div class="kpi">
-          <div class="kpi-label"><i class="dot accent"></i><span>待发布</span></div>
-          <div class="kpi-value mono">12</div>
-          <div class="kpi-sub muted">全部商品</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label"><i class="dot ok"></i><span>已发布</span></div>
-          <div class="kpi-value mono">8</div>
-          <div class="kpi-sub muted">已上架官网</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label"><i class="dot warn"></i><span>待完善</span></div>
-          <div class="kpi-value mono">3</div>
-          <div class="kpi-sub muted">信息待补充</div>
-        </div>
-        <div class="kpi">
-          <div class="kpi-label"><i class="dot cyan"></i><span>编辑中</span></div>
-          <div class="kpi-value mono">1</div>
-          <div class="kpi-sub muted">编辑稿</div>
-        </div>
-
-        <!-- 精选商品卡 -->
-        <div class="featured">
-          <div class="featured-img">
-            <svg viewBox="0 0 200 120" width="100%" height="100%" fill="none">
-              <defs>
-                <linearGradient id="bikeGlow" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stop-color="#5B8DEF"/><stop offset="1" stop-color="#2E6FF2"/>
-                </linearGradient>
-                <radialGradient id="bgGlow" cx="0.5" cy="0.4" r="0.75">
-                  <stop offset="0" stop-color="#1B2A4A"/><stop offset="1" stop-color="#101014"/>
-                </radialGradient>
-              </defs>
-              <rect width="200" height="120" fill="url(#bgGlow)"/>
-              <g stroke="url(#bikeGlow)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="52" cy="86" r="20"/>
-                <circle cx="148" cy="86" r="20"/>
-                <path d="M52 86 88 52l40 2 20 32M88 52 76 40h-14M128 54l-6-16h-10M148 86l-20-32"/>
-                <path d="M88 52l-8 34h36l4-32" opacity="0.5"/>
-              </g>
-              <circle cx="52" cy="86" r="20" stroke="#2E6FF2" opacity="0.25" stroke-width="6"/>
-              <circle cx="148" cy="86" r="20" stroke="#2E6FF2" opacity="0.25" stroke-width="6"/>
-              <path d="M40 106h120" stroke="#27272A" stroke-width="1.5"/>
-            </svg>
-          </div>
-          <div class="featured-info">
-            <b>FC1 Carbon Fold</b>
-            <span class="muted">折叠碳纤维电动自行车</span>
-            <div class="status-tag ok"><i class="dot ok"></i>已发布</div>
-            <a class="detail-link" href="#" data-action="view-detail">
-              查看详情
-              <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 电商库存查询 -->
-      <section class="card stock-card">
-        <div class="card-head">
-          <h2 class="sec-title">电商库存查询</h2>
-          <p class="muted">SKU 库存、VIN 整车的仓位信息，可用库存及在途数量，支持多仓库、多型号查询。</p>
-        </div>
-
-        <div class="sku-search-row">
-          <label>SKU 编码</label>
-          <div class="sku-input">
-            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>
-            <input id="skuInput" type="text" class="mono" placeholder="输入 SKU 编码，例如：FC1-DE-BLACK">
-          </div>
-          <button type="button" class="btn primary" id="skuQueryBtn">
-            <svg viewBox="0 0 16 16" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="7" cy="7" r="4.5"/><path d="m10.5 10.5 3 3"/></svg>
-            <span>查询</span>
-          </button>
-        </div>
-
-        <div class="table-wrap">
-          <table class="stock-table" id="stockTable">
-            <thead>
-              <tr>
-                <th>SKU 编码</th><th>产品名称</th><th>型号 / 规格</th><th>仓库</th>
-                <th class="num">可用库存</th><th class="num">锁定库存</th><th class="num">在途数量</th><th class="num">总库存</th>
-                <th>更新时间</th><th class="op">操作</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-sku="FC1-DE-BLACK">
-                <td class="mono">FC1-DE-BLACK</td><td>FC1 折叠电动自行车</td><td class="muted">FC1 / 碳纤 / 黑色</td><td>德国仓</td>
-                <td class="mono num">18</td><td class="mono num">2</td><td class="mono num">10</td><td class="mono num">30</td>
-                <td class="mono muted">2026-10-23 23:25</td><td class="op"><a href="#" class="link" data-action="view-stock">查看明细</a></td>
-              </tr>
-              <tr data-sku="FC1-DE-WHITE">
-                <td class="mono">FC1-DE-WHITE</td><td>FC1 折叠电动自行车</td><td class="muted">FC1 / 碳纤 / 白色</td><td>德国仓</td>
-                <td class="mono num">12</td><td class="mono num">1</td><td class="mono num">8</td><td class="mono num">21</td>
-                <td class="mono muted">2026-10-23 23:28</td><td class="op"><a href="#" class="link" data-action="view-stock">查看明细</a></td>
-              </tr>
-              <tr data-sku="CT1-EU-GRAY">
-                <td class="mono">CT1-EU-GRAY</td><td>CT1 城市通勤电动自行车</td><td class="muted">CT1 / 欧洲 / 灰色</td><td>慕尼黑仓</td>
-                <td class="mono num low">5</td><td class="mono num">0</td><td class="mono num">6</td><td class="mono num">11</td>
-                <td class="mono muted">2026-10-23 18:40</td><td class="op"><a href="#" class="link" data-action="view-stock">查看明细</a></td>
-              </tr>
-              <tr class="empty-row" id="emptyRow" hidden>
-                <td colspan="10">未找到匹配的 SKU，请检查编码后重试</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="table-foot">
-          <span class="muted" id="tableCount">共 3 条记录 · 显示第 1 - 3 条</span>
-          <div class="pager">
-            <button type="button" class="pager-btn" data-action="prev" title="上一页">
-              <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3.5 5.5 8 10 12.5"/></svg>
-            </button>
-            <span class="pager-cur mono">1</span>
-            <button type="button" class="pager-btn" data-action="next" title="下一页">
-              <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 3.5 4.5 4.5L6 12.5"/></svg>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- 底部表单行 -->
-      <div class="form-row">
-
-        <!-- 商品价格管理 -->
-        <section class="card form-card">
-          <div class="card-head">
-            <h2 class="sec-title">自建商城 · 商品价格管理</h2>
-            <p class="muted">用于设置官网及 B2C 渠道的商品售价（EUR），支持多国币 / 多版本价格配置。</p>
-          </div>
-          <form id="priceForm" autocomplete="off">
-            <div class="frow">
-              <div class="field">
-                <label>选择商品</label>
-                <div class="input select">
-                  <select><option>FC1 折叠电动自行车</option><option>CT1 城市通勤电动自行车</option></select>
-                  <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m4 6 4 4 4-4"/></svg>
-                </div>
-              </div>
-              <div class="field">
-                <label>SKU</label>
-                <div class="input select">
-                  <select><option>FC1-DE-BLACK（德国 / 黑色）</option><option>FC1-DE-WHITE（德国 / 白色）</option></select>
-                  <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m4 6 4 4 4-4"/></svg>
-                </div>
-              </div>
-            </div>
-            <div class="frow">
-              <div class="field">
-                <label>售价（EUR）</label>
-                <div class="input"><input type="text" class="mono" value="1,799"></div>
-              </div>
-              <div class="field">
-                <label>对比价（EUR）</label>
-                <div class="input"><input type="text" class="mono" value="1,999"></div>
-              </div>
-            </div>
-            <div class="frow">
-              <div class="field">
-                <label>税率设置</label>
-                <div class="input select">
-                  <select><option>德国 VAT 19%</option><option>法国 VAT 20%</option><option>意大利 VAT 22%</option></select>
-                  <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m4 6 4 4 4-4"/></svg>
-                </div>
-              </div>
-              <div class="field">
-                <label>生效时间</label>
-                <div class="input">
-                  <input type="date" class="mono" value="2026-10-23">
-                  <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><rect x="2.3" y="3.3" width="11.3" height="10.3" rx="1.6"/><path d="M2.3 6.6h11.3M5.3 1.8v2.2M10.7 1.8v2.2"/></svg>
-                </div>
-              </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn primary">
-                <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2.5h8.5L13.5 4.5V13.5H3a.5.5 0 0 1-.5-.5v-10a.5.5 0 0 1 .5-.5z"/><path d="M5 2.5v3.5h5V2.5M5 13.5v-4h6v4"/></svg>
-                <span>保存价格</span>
-              </button>
-              <button type="button" class="btn ghost" data-action="batch-price">
-                <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M13.5 2.5 2.5 13.5M4.2 5.4a1.7 1.7 0 1 0 0-.01M11.8 10.6a1.7 1.7 0 1 0 0-.01"/></svg>
-                <span>批量设置价格</span>
-              </button>
-            </div>
-          </form>
-        </section>
-
-        <!-- 内部订单草稿 -->
-        <section class="card form-card">
-          <div class="card-head">
-            <h2 class="sec-title">创建内部订单草稿</h2>
-            <p class="muted">为访客、客服或线下订单创建内部订单草稿，用于后续转正式订单发货。</p>
-          </div>
-          <form id="draftForm" autocomplete="off">
-            <div class="frow">
-              <div class="field">
-                <label>客户邮箱</label>
-                <div class="input"><input type="email" class="mono" placeholder="customer@example.com"></div>
-              </div>
-              <div class="field">
-                <label>数量</label>
-                <div class="stepper">
-                  <button type="button" class="step-btn" data-step="-1" aria-label="减少">
-                    <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 8h8"/></svg>
-                  </button>
-                  <span class="mono" id="qtyVal">1</span>
-                  <button type="button" class="step-btn plus" data-step="1" aria-label="增加">
-                    <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M8 4v8M4 8h8"/></svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-            <div class="frow">
-              <div class="field">
-                <label>选购商品</label>
-                <div class="input select">
-                  <select><option>FC1 折叠电动自行车</option><option>CT1 城市通勤电动自行车</option></select>
-                  <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m4 6 4 4 4-4"/></svg>
-                </div>
-              </div>
-              <div class="field">
-                <label>SKU</label>
-                <div class="input select">
-                  <select><option>FC1-DE-BLACK（德国 / 黑色）</option><option>FC1-DE-WHITE（德国 / 白色）</option></select>
-                  <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m4 6 4 4 4-4"/></svg>
-                </div>
-              </div>
-            </div>
-            <div class="frow single">
-              <div class="field">
-                <label>备注</label>
-                <div class="input"><input type="text" placeholder="备注：请添加备注信息…"></div>
-              </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn primary">
-                <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 8.5 6 12l7.5-8"/></svg>
-                <span>创建草稿订单</span>
-              </button>
-              <button type="reset" class="btn ghost" id="resetDraftBtn">重置</button>
-            </div>
-          </form>
-        </section>
-      </div>
-
-    </main>
-
-    <!-- 底部状态条 -->
-    <footer class="statusbar">
-      <i class="dot ok"></i>
-      <span>系统状态 正常</span>
-      <svg viewBox="0 0 16 16" width="12" height="12" fill="none" stroke="#71717A" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 2.5v2.5H11"/></svg>
-      <span class="muted2">库存数据同步于</span>
-      <span class="mono sync-time" id="syncTime">23:31:44</span>
-      <div class="statusbar-space"></div>
-      <span class="muted2">按 <kbd>K</kbd> 键打开指令面板</span>
-    </footer>
-  </div>
+  </main>
 </div>
 
 <div class="toast" id="toast"></div>
-
 <script src="assets/app.js"></script>
 </body>
 </html>

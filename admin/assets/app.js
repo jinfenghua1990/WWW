@@ -1,137 +1,115 @@
 /* ============================================================
-   ALSVIN 运营后台 — 交互脚本
+   ALSVID · 产品中心 — 交互
    ============================================================ */
 (function () {
   "use strict";
 
-  var $ = function (sel) { return document.querySelector(sel); };
-  var $$ = function (sel) { return Array.prototype.slice.call(document.querySelectorAll(sel)); };
+  var $ = function (s) { return document.querySelector(s); };
+  var $$ = function (s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
 
   /* ---------------- Toast ---------------- */
   var toastEl = $("#toast");
   var toastTimer = null;
-  function toast(msg, type) {
+  function toast(msg) {
     toastEl.textContent = msg;
-    toastEl.className = "toast show" + (type ? " " + type : "");
+    toastEl.className = "toast show";
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(function () {
-      toastEl.className = "toast";
-    }, 2600);
+    toastTimer = setTimeout(function () { toastEl.className = "toast"; }, 2400);
   }
 
-  /* ---------------- SKU 库存检索 ---------------- */
-  var skuInput = $("#skuInput");
-  var stockTable = $("#stockTable");
-  var rows = $$("#stockTable tbody tr[data-sku]");
-  var emptyRow = $("#emptyRow");
-  var tableCount = $("#tableCount");
-
-  function filterTable() {
-    var q = skuInput.value.trim().toUpperCase();
-    var visible = 0;
-    rows.forEach(function (row) {
-      var hit = !q || row.getAttribute("data-sku").indexOf(q) > -1;
-      row.hidden = !hit;
-      if (hit) visible++;
-    });
-    emptyRow.hidden = visible > 0;
-    tableCount.textContent = "共 " + visible + " 条记录 · 显示第 1 - " + visible + " 条";
-  }
-
-  skuInput.addEventListener("input", filterTable);
-  $("#skuQueryBtn").addEventListener("click", function () {
-    filterTable();
-    var q = skuInput.value.trim();
-    if (q) {
-      toast("已按 SKU「" + q + "」过滤库存记录");
-    }
-  });
-
-  /* ---------------- 数量步进器 ---------------- */
-  var qtyVal = $("#qtyVal");
-  $$(".step-btn").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      var delta = parseInt(btn.getAttribute("data-step"), 10);
-      var next = Math.max(1, Math.min(99, parseInt(qtyVal.textContent, 10) + delta));
-      qtyVal.textContent = next;
-    });
-  });
-
-  /* ---------------- 表单提交（演示交互） ---------------- */
-  $("#priceForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    toast("价格配置已保存：将同步至官网及 B2C 渠道", "success");
-  });
-
-  $("#draftForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    toast("内部订单草稿已创建，可在订单列表中查看", "success");
-  });
-
-  $("#resetDraftBtn").addEventListener("click", function () {
-    qtyVal.textContent = "1";
-    toast("表单已重置");
-  });
-
-  /* ---------------- 通用动作（演示提示） ---------------- */
-  var ACTION_MSG = {
-    "new-product": "已打开「新建商品发布」流程（演示）",
-    "batch-price": "已打开「批量价格设置」（演示）",
-    "export-report": "库存报表导出任务已加入队列（演示）",
-    "guide": "已打开发布指南文档（演示）",
-    "view-detail": "正在打开 FC1 Carbon Fold 商品详情…（演示）",
-    "view-stock": "正在打开 SKU 库存明细…（演示）",
-    "lang": "语言切换：中文 / English（演示）",
-    "prev": "当前已是第一页",
-    "next": "当前已是最后一页"
-  };
-
-  $$("[data-action]").forEach(function (el) {
-    el.addEventListener("click", function (e) {
-      if (el.tagName === "A") e.preventDefault();
-      var msg = ACTION_MSG[el.getAttribute("data-action")];
-      if (msg) toast(msg, el.getAttribute("data-action") === "next" || el.getAttribute("data-action") === "prev" ? "warn" : "");
-    });
-  });
-
-  /* ---------------- 通知按钮 ---------------- */
-  $("#notifyBtn").addEventListener("click", function () {
-    this.classList.toggle("read");
-    toast(this.classList.contains("read") ? "通知已全部标记为已读" : "有 1 条未读通知：CT1-EU-GRAY 库存预警");
-  });
-
-  /* ---------------- 快捷键：K 打开指令面板（聚焦全局搜索） ---------------- */
-  document.addEventListener("keydown", function (e) {
-    var tag = (e.target.tagName || "").toLowerCase();
-    var typing = tag === "input" || tag === "select" || tag === "textarea";
-    if (!typing && (e.key === "k" || e.key === "K")) {
-      e.preventDefault();
-      $("#globalSearch").focus();
-    }
-    if (e.key === "Escape") {
-      $("#globalSearch").blur();
-      skuInput.blur();
-    }
-  });
-
-  /* ---------------- 底部状态条：同步时间 ---------------- */
-  function pad(n) { return n < 10 ? "0" + n : n; }
-  function tick() {
-    var d = new Date();
-    var t = pad(d.getHours()) + ":" + pad(d.getMinutes()) + ":" + pad(d.getSeconds());
-    $("#syncTime").textContent = t;
-  }
-  tick();
-  setInterval(tick, 1000);
-
-  /* ---------------- 侧栏导航切换（演示） ---------------- */
-  $$(".nav-item:not(.disabled)").forEach(function (item) {
+  /* ---------------- 二级导航 ---------------- */
+  $$(".nav-item").forEach(function (item) {
     item.addEventListener("click", function (e) {
       e.preventDefault();
       $$(".nav-item").forEach(function (n) { n.classList.remove("active"); });
       item.classList.add("active");
-      var name = item.querySelector("span").textContent;
-      toast("已切换到「" + name + "」模块（当前版本聚焦官网商品发布）");
+      var name = item.getAttribute("data-nav");
+      if (name !== "型号") {
+        toast("已切换到「" + name + "」（该模块建设中，当前展示型号视图）");
+      }
     });
+  });
+
+  /* ---------------- 系列筛选 + 搜索 ---------------- */
+  var chips = $$(".chip");
+  var rows = $$("#modelTable tbody tr[data-series]");
+  var cards = $$(".series-card");
+  var emptyRow = $("#emptyRow");
+  var listCount = $("#listCount");
+  var searchInput = $("#searchInput");
+  var currentFilter = "ALL";
+
+  function apply() {
+    var q = searchInput.value.trim().toUpperCase();
+    var visible = 0;
+
+    rows.forEach(function (row) {
+      var matchSeries = currentFilter === "ALL" || row.getAttribute("data-series") === currentFilter;
+      var matchText = !q || (row.getAttribute("data-search") || "").toUpperCase().indexOf(q) > -1;
+      var show = matchSeries && matchText;
+      row.hidden = !show;
+      if (show) visible++;
+    });
+
+    cards.forEach(function (card) {
+      var match = currentFilter === "ALL" || card.getAttribute("data-series") === currentFilter;
+      card.classList.toggle("dim", !match);
+    });
+
+    emptyRow.hidden = visible > 0;
+    listCount.textContent = "共 " + visible + " 个型号";
+  }
+
+  chips.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      chips.forEach(function (c) { c.classList.remove("active"); });
+      chip.classList.add("active");
+      currentFilter = chip.getAttribute("data-filter");
+      apply();
+    });
+  });
+
+  searchInput.addEventListener("input", apply);
+
+  /* ---------------- 操作按钮 ---------------- */
+  var ACTION_MSG = {
+    "import": "已打开型号数据导入：支持 Excel / CSV 批量导入（演示）",
+    "new-model": "已打开「新建型号」表单（演示）"
+  };
+  $$("[data-action]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var msg = ACTION_MSG[btn.getAttribute("data-action")];
+      if (msg) toast(msg);
+    });
+  });
+
+  /* ---------------- 表格行点击 ---------------- */
+  rows.forEach(function (row) {
+    row.style.cursor = "pointer";
+    row.addEventListener("click", function () {
+      var name = row.querySelector(".name").textContent;
+      toast("打开型号「" + name + "」详情（演示）");
+    });
+  });
+
+  /* ---------------- 系列卡点击：联动筛选 ---------------- */
+  cards.forEach(function (card) {
+    card.style.cursor = "pointer";
+    card.addEventListener("click", function () {
+      var series = card.getAttribute("data-series");
+      var target = chips.filter(function (c) { return c.getAttribute("data-filter") === series; })[0];
+      if (target) target.click();
+    });
+  });
+
+  /* ---------------- 快捷键：/ 聚焦搜索 ---------------- */
+  document.addEventListener("keydown", function (e) {
+    var tag = (e.target.tagName || "").toLowerCase();
+    var typing = tag === "input" || tag === "textarea" || tag === "select";
+    if (!typing && e.key === "/") {
+      e.preventDefault();
+      searchInput.focus();
+    }
+    if (e.key === "Escape") searchInput.blur();
   });
 })();
